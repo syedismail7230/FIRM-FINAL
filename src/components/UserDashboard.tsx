@@ -43,29 +43,39 @@ export function UserDashboard({ user }: UserDashboardProps) {
   }, [user.id]);
 
   const checkApprovalStatus = async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
     try {
       const { data, error } = await supabase
         .from('profiles')
         .select('is_approved')
         .eq('id', user.id)
-        .maybeSingle();
+        .maybeSingle()
+        .abortSignal(controller.signal);
+
+      clearTimeout(timeoutId);
 
       if (error) {
         console.error('Supabase error:', error);
         toast.error(`Database error: ${error.message}`);
         setIsApproved(false);
+        setConnectionError(true);
         return;
       }
 
       setIsApproved(data?.is_approved ?? false);
       setConnectionError(false);
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error('Error checking approval status:', error);
       setIsApproved(false);
       setConnectionError(true);
       
       if (error instanceof TypeError && error.message === 'Failed to fetch') {
         toast.error('Unable to connect to the server. Please check your internet connection.');
+      } else if (error instanceof DOMException && error.name === 'AbortError') {
+        toast.error('Request timed out. Please check your connection and try again.');
       } else {
         toast.error('An error occurred while checking approval status. Please try again later.');
       }
