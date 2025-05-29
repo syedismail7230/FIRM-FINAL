@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Progress bar animation */
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress-indeterminate {
+  animation: progress-indeterminate 1.5s infinite linear;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Base styles */
+body {
+  @apply bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen dark:from-gray-900 dark:via-gray-800 dark:to-gray-900;
+}
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  @apply bg-gray-900;
+}
+
+/* Responsive container */
+.container {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg dark:bg-gray-800/70 dark:border-gray-700/20;
+}
+
+.glass-card {
+  @apply glass rounded-2xl transition-all duration-300 hover:shadow-xl hover:bg-white/80 dark:hover:bg-gray-800/80;
+}
+
+.glass-button {
+  @apply glass px-4 py-2 rounded-lg hover:bg-white/90 transition-all duration-300 active:scale-95 dark:hover:bg-gray-800/90;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scroll snap */
+.scroll-snap-align-start {
+  scroll-snap-align: start;
+}
+
+/* Map styles */
+.mapboxgl-popup-content {
+  @apply glass rounded-xl border-0 shadow-lg !important;
+}
+
+.mapboxgl-popup-close-button {
+  @apply text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 !important;
+}
+
+/* Map container styles */
+.map-container {
+  @apply w-full h-[300px] sm:h-[400px] rounded-2xl overflow-hidden;
+}
+
+/* Business marker animations */
+.business-marker {
+  @apply transition-all duration-300;
+}
+
+.business-marker-highlight {
+  @apply animate-pulse shadow-lg;
+}
+
+/* Franchise swiper styles */
+.franchise-swiper {
+  @apply h-auto;
+  padding: 50px 0;
+}
+
+.franchise-swiper .swiper-slide {
+  @apply transition-all duration-500;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.franchise-swiper .swiper-slide-active {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.franchise-swiper .swiper-slide-prev,
+.franchise-swiper .swiper-slide-next {
+  opacity: 0.7;
+  transform: scale(0.9);
+}
+
+.franchise-swiper .swiper-button-next,
+.franchise-swiper .swiper-button-prev {
+  @apply text-indigo-600 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.franchise-swiper .swiper-button-next:after,
+.franchise-swiper .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.franchise-swiper .swiper-pagination-bullet {
+  @apply bg-indigo-600;
+}
+
+.franchise-swiper .swiper-pagination-bullet-active {
+  @apply bg-indigo-600;
+}
+
+/* Franchise card hover effects */
+.franchise-card {
+  @apply transition-all duration-300;
+}
+
+.franchise-card:hover {
+  @apply transform scale-105;
+}
+
+/* Franchise logo styles */
+.franchise-logo {
+  @apply h-16 w-16 object-contain mx-auto mb-4;
+}
+
+/* Franchise card badge */
+.franchise-badge {
+  @apply absolute top-4 right-4 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium;
+}
+
+/* Franchise brand logo */
+.franchise-brand-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background-color: white;
+  border-radius: 50%;
+  padding: 8px;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+
+/* Franchise header overlay */
+.franchise-header-overlay {
+  @apply absolute inset-0 bg-gradient-to-b from-black/70 to-black/50 flex items-center justify-center;
+}
+
+/* Franchise category pills */
+.category-pill {
+  @apply px-3 py-1 text-sm rounded-full transition-colors;
+}
+
+.category-pill.active {
+  @apply bg-indigo-600 text-white;
+}
+
+.category-pill.inactive {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+}
+
+/* Franchise card content */
+.franchise-card-content {
+  @apply p-6;
+}
+
+/* Franchise metrics */
+.franchise-metric {
+  @apply flex items-center gap-2;
+}
+
+.franchise-metric-icon {
+  @apply w-5 h-5 text-indigo-600;
+}
+
+.franchise-metric-label {
+  @apply text-sm text-gray-600;
+}
+
+.franchise-metric-value {
+  @apply font-semibold;
+}
+
+/* Progress bars */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-500;
+}
+
+.progress-bar-fill.primary {
+  @apply bg-indigo-600;
+}
+
+.progress-bar-fill.success {
+  @apply bg-green-500;
+}
+
+/* Requirement and advantage pills */
+.feature-pill {
+  @apply flex items-center gap-2 text-sm p-2 rounded-lg;
+}
+
+.feature-pill.requirement {
+  @apply bg-gray-50 text-gray-600;
+}
+
+.feature-pill.advantage {
+  @apply bg-green-50 text-gray-600;
+}
+
+.feature-pill-dot {
+  @apply w-1.5 h-1.5 rounded-full;
+}
+
+.feature-pill-dot.requirement {
+  @apply bg-indigo-600;
+}
+
+.feature-pill-dot.advantage {
+  @apply bg-green-500;
+}
+
+/* Contact links */
+.contact-link {
+  @apply flex items-center gap-2 text-gray-600 hover:text-indigo-600 transition-colors;
+}
+
+.contact-icon {
+  @apply w-4 h-4;
+}
+
+.contact-text {
+  @apply text-sm;
+}
+
+/* Section dividers */
+.section-divider {
+  @apply border-t border-gray-200 mt-4 pt-4;
+}
+
+/* Section headers */
+.section-header {
+  @apply font-semibold mb-2 flex items-center gap-2;
+}
+
+.section-header-icon {
+  @apply w-4 h-4 text-indigo-600;
+}
